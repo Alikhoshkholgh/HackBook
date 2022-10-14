@@ -52,6 +52,7 @@
     - **Get Domain Policy:** 
       ```powershell
       Get-DomainPolicy
+      
       #Will show us the policy configurations of the Domain about system access or kerberos
       (Get-DomainPolicy)."system access"
       (Get-DomainPolicy)."kerberos policy"
