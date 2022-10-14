@@ -9,22 +9,25 @@
 
 
   + ## **Usage**:
+    + Get Current Domain:
     ```
-     Get Current Domain: Get-ADDomain
+      Get-ADDomain
     ```
+    + Enum Other Domains: 
     ```
-    Enum Other Domains: Get-ADDomain -Identity DomainName.TLD
+      Get-ADDomain -Identity DomainName.TLD
     ```
+    + Get Domain SID: 
     ```
-    Get Domain SID: Get-DomainSID
+      Get-DomainSID
     ```
-    ```
-    Get Domain Controlers:
+    + Get Domain Controlers:
+    ```    
       Get-ADDomainController
       Get-ADDomainController -Identity DomainName
     ```
-    ```
-    Enumerate Domain Users:
+    + Enumerate Domain Users:
+    ```    
        Get-ADUser -Filter * -Identity <user> -Properties *
         #Get a spesific "string" on a user's attribute
        Get-ADUser -Filter 'Description -like "*wtver*"' -Properties Description | select Name, Description
