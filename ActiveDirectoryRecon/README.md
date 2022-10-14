@@ -49,7 +49,7 @@
     ```
     
 
-# Using PowerView:
+# PowerView:
   
 - **Get Current Domain:** `Get-NetDomain`
 - **Enum Other Domains:** `Get-NetDomain -Domain <DomainName>`
