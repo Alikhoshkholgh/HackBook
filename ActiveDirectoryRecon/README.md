@@ -32,3 +32,14 @@
        #Get a spesific "string" on a user's attribute
        Get-ADUser -Filter 'Description -like "*wtver*"' -Properties Description | select Name, Description
     ```
+  + **Enumerate Domain Users:** 
+    ```powershell
+        Get-ADUser -Filter * -Identity <user> -Properties *
+      #Get a spesific "string" on a user's attribute
+        Get-ADUser -Filter 'Description -like "*wtver*"' -Properties Description | select Name, Description
+    ```
+  + **Enum Domain Computers:** 
+    ```powershell
+        Get-ADComputer -Filter * -Properties *
+        Get-ADGroup -Filter * 
+    ```
