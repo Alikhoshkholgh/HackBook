@@ -49,7 +49,7 @@
     ```
     
 
-### Using PowerView
+# Using PowerView:
   
 - **Get Current Domain:** `Get-NetDomain`
 - **Enum Other Domains:** `Get-NetDomain -Domain <DomainName>`
@@ -176,8 +176,4 @@
 
   #Confirming admin access:
   Invoke-UserHunter -CheckAccess
-  ```
-  :heavy_exclamation_mark: **Priv Esc to Domain Admin with User Hunting:** \
-  I have local admin access on a machine -> A Domain Admin has a session on that machine -> I steal his token and impersonate him ->   
-  Profit!
-    
+  ``` 
