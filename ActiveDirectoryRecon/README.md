@@ -1,14 +1,7 @@
-
-
-      
-# Other Interesting Commands
-- **Find Domain Controllers**
-  ```ps1
-  nslookup domain.com
-  nslookup -type=srv _ldap._tcp.dc._msdcs.<domain>.com
-  nltest /dclist:domain.com
-  Get-ADDomainController -filter * | Select-Object name
-  gpresult /r
-  $Env:LOGONSERVER 
-  echo %LOGONSERVER%
-  ```
+# Scan Checklist:
+      + where am i in the network
+      + finding more about **users** and their **ability** to effect the system
+      + finding **Domain Controllers**
+      + finding implemented services
+      + finding installed applicatoins
+      + finding more about the network policies(**do we have any access to the internet**)
