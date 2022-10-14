@@ -21,6 +21,7 @@
     ```powershell    
       Get-ADDomainController
       Get-ADDomainController -Identity DomainName
+      Get-ADDomainController -filter * | Select-Object name
     ```
   + **Enumerate Domain Users**:
     ```powershell
