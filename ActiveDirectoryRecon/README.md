@@ -13,18 +13,9 @@
 
 
   + ## **Usage**:
-  + **Get Current Domain**:
-    ```powershell
-      Get-ADDomain
-    ```
-  + **Enum Other Domains**: 
-    ```powershell
-      Get-ADDomain -Identity <DomainName>
-    ```
-  + **Get Domain SID**: 
-    ```powershell
-      Get-DomainSID
-    ```
+  + **Get Current Domain**: `Get-ADDomain`    
+  + **Enum Other Domains**: `Get-ADDomain -Identity <DomainName>`    
+  + **Get Domain SID**: `Get-DomainSID`    
   + **Get Domain Controlers**:
     ```powershell    
       Get-ADDomainController
