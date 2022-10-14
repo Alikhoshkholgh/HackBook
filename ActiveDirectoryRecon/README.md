@@ -1,4 +1,4 @@
-# Scan Checklist:
+## Scan Checklist:
       # where am i in the network
       # finding more about **users** and their **ability** to effect the system
       # finding **Domain Controllers**
