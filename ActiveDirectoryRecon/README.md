@@ -19,7 +19,7 @@
     ```
   + **Enum Other Domains**: 
     ```powershell
-      Get-ADDomain -Identity DomainName.TLD
+      Get-ADDomain -Identity <DomainName>
     ```
   + **Get Domain SID**: 
     ```powershell
