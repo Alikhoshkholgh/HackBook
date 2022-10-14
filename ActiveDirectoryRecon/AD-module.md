@@ -1,6 +1,5 @@
 
 # AD module:
-
   + ## **setup-install**:
     + in **windows servers** its already **installed**, and i recommend that to only use it in DC.
     + to enable active directory module on windows10:
