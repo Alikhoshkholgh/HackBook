@@ -173,7 +173,7 @@
       Invoke-UserHunter -CheckAccess
       ``` 
       
-### Other Interesting Commands
+# Other Interesting Commands
 - **Find Domain Controllers**
   ```ps1
   nslookup domain.com
