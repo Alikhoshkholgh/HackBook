@@ -36,24 +36,24 @@
     
 - **get a list of available event logs on the local machine**     
   ```ps1
-  # Sometimes, the list of available event logs gives you an insight into what applications and services are installed on the machine! 
+  # list of available event logs gives you an insight into what applications and services are set on the machine
   Get-EventLog -List
   ```
   
 - **SYSmon**
-```ps1
-# installed or not
-Get-Process | Where-Object { $_.ProcessName -eq "Sysmon" }
-Get-CimInstance win32_service -Filter "Description = 'System Monitor service'"
-reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-Sysmon/Operational
+  ```ps1
+  # installed or not
+  Get-Process | Where-Object { $_.ProcessName -eq "Sysmon" }
+  Get-CimInstance win32_service -Filter "Description = 'System Monitor service'"
+  reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-Sysmon/Operational
 
-# try to find the sysmon configuration file if we have readable permission to understand what system administrators are monitoring.
-findstr /si '<ProcessCreate onmatch="exclude">' C:\tools\*
-```
+  # try to find the sysmon configuration file if we have readable permission to understand what system administrators are monitoring.
+  findstr /si '<ProcessCreate onmatch="exclude">' C:\tools\*
+  ```
   
-- **tools for check EDR**
-  [Invoke-EDRchecker](https://github.com/PwnDexter/Invoke-EDRChecker)
-  [SharpEDRchecker](https://github.com/PwnDexter/SharpEDRChecker)
+- **tools for check EDR on system**
+  + [Invoke-EDRchecker](https://github.com/PwnDexter/Invoke-EDRChecker)
+  + [SharpEDRchecker](https://github.com/PwnDexter/SharpEDRChecker)
     
     
     
