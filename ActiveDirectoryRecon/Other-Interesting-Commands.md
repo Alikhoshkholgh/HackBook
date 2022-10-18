@@ -47,7 +47,7 @@
   Get-CimInstance win32_service -Filter "Description = 'System Monitor service'"
   reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-Sysmon/Operational
 
-  # try to find the sysmon configuration file if we have readable permission to understand what system administrators are monitoring.
+  # try to find the sysmon configuration file if we have readable permission to understand system monitoring.
   findstr /si '<ProcessCreate onmatch="exclude">' C:\tools\*
   ```
   
