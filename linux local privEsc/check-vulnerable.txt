@@ -1,0 +1,11 @@
+### Dangerous Binaries:
+  + take a look at "gtfobins.github.io"
+  
+### command to find all binaries which have SUID and SGID set:
+
+		find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+    
+### + check which system running as root
+
+	+ needless to say, if you do anything with it's binaries, this would be running as root
+    
