@@ -64,5 +64,8 @@
   
   # We find the file name and its path; now let's find more details using the Get-Process cmdlet
   Get-Process -Name Exe-demo
+  
+  # Once we find its process ID, let's check if providing a network service by listing the listening ports within the system.
+  netstat -noa |findstr "LISTENING" |findstr "3212"
   ```
   
