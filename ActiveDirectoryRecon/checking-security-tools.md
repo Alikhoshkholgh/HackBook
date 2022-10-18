@@ -1,15 +1,5 @@
 # How to Enumerate security Tools that implemented on the target
 
-- **Find Domain Controllers**
-  ```ps1
-  nslookup domain.com
-  nslookup -type=srv _ldap._tcp.dc._msdcs.<domain>.com
-  nltest /dclist:domain.com
-  gpresult /r
-  $Env:LOGONSERVER 
-  echo %LOGONSERVER%
-  ```
-
 - **whether antivirus exists or not**
   ```ps1
   wmic /namespace:\\root\securitycenter2 path antivirusproduct
