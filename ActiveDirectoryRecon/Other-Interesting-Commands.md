@@ -36,7 +36,7 @@
     
 - **get a list of available event logs on the local machine**     
   ```ps1
-  # list of available event logs gives you an insight into what applications and services are set on the machine
+  # list of available event logs gives you an insight into what applications and services are installed
   Get-EventLog -List
   ```
   
