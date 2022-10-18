@@ -1,4 +1,4 @@
-# How to Enumerate security Tools that implemented on the target
+# Enumerate security Tools that implemented on the target
 
 - **whether antivirus exists or not**
   ```ps1
@@ -47,3 +47,22 @@
     
     
     
+# Enumerate Applications and Services
+
+- **using wmic to list all installed applications**
+  ```ps1
+  wmic product get name,version  
+  ```
+
+- **services**
+  ```ps1
+  # list running services
+  net start
+  
+  #We can see a service with the name <Service-name> which we want to know more about
+  wmic service where "name like 'Service-name'" get Name,PathName
+  
+  # We find the file name and its path; now let's find more details using the Get-Process cmdlet
+  Get-Process -Name Exe-demo
+  ```
+  
