@@ -1,4 +1,4 @@
-# Other Interesting Commands
+# How to Enumerate security Tools that implemented on the target
 
 - **Find Domain Controllers**
   ```ps1
