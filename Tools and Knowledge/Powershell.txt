@@ -1,0 +1,196 @@
+
+
+
+
+-------------------------------------------
+real systax:
+		verb-noun
+
+alias:
+		<single-command>
+
+-------------------------------------------
+
+
+
+
+
+------------------------------------------------------------------------------------ information
+
+	+ powershell profiles:
+
+		+ something like configuration file for initiating the powershell for a user 
+		+ something like ".bashrc" in linux
+		+ $profile
+	  	     C:\Users\bob\Documents\WindowsPowershell\Microsoft.PowerShell_profile.ps1
+
+
+	+ by default because of the execution policy, we cannot run powershell scripts in our system. 
+
+
+
+
+
+ 
+------------------------------------------------------------------------------------ commands
+--> Start-Treanscript
+
+--> Get-Command *-AD*  #find command with *-AD*. then you can look at name cumomn
+
+-->  Get-Alias	#show aliases
+
+-->  $variableName = 15	#create variable
+
+-->  Get-Help <command>	# Get-Help echo --> linux: man echo
+
+-->  Import-Module <module-name>
+
+-->  Get-History
+
+-->  Get-ADUser -f *	-resultSetSize 100	#list all AD users (max show: 100)
+
+-->  <some-command> | Select-Object <search-key>, <search-key>, ...
+
+-->  cd AD: && dir 		#we can explicitly cd into active directory path. 
+
+-->  Get-ADGroupMember <group-name> | Select-Object .....
+
+-->  <command> | Export-Csv <path to csv-file>
+
+-->  Search-ADAccount -AccountDisabled 	#search in users for matching property
+
+-->  Set-ADUser -Identity <userName> -ProfilePath <\\computer-name\Profiles$\userName>    #Set-ADUser: mostly used for applying changes to user's property
+
+
+#how to jump to next line 
+-->  command `
+	<continue of command>
+
+	 	 
+-->  New-ADUser -Name "" -GivenName "" -GivenName "name" -Surname "lastName" -UserPrincipalName "username" -AccountPassword (ConvertTo-secureStringi <pass> -AsPlainText -Force) -Path "" -ChangePasswordAtLogon 1 -Enabled 1
+
+
+#interactive input:
+	$var1 = Read-Host -Prompt "Please insert"
+
+#inserting CSV file:
+	$users = Import-CSV $filepath
+
+
+
+
+
+
+
+
+--> dir 
+
+--> ls
+
+--> Get-ChildItem
+
+--> Get-Alias
+
+--> <command> | Select-Object name
+
+--> <command> | Select-Object -First 1
+
+--> <command> | Select-Object -last 1
+
+--> <command> | Select-Object -index 0
+
+--> (<command> | Select-Object -index 0).Name
+
+--> (<command> | Select-Object -index 0).ToString()
+
+--> <command> | Select-Object -First 1 | Get-Member	#Get-Member is just for showing all of the properties and methods you can interact with this object
+
+--> Get-Help <command> 
+
+--> Get-Command
+
+--> Get-Command *printer*
+
+--> Get-Help *network*
+
+--> Start-Transcript	#start recording commands
+
+--> Get-Command -noun S*
+
+--> Get-Service		# print out all of the services 
+
+--> cd\			# cd to root  
+
+--> Get-alias <command>
+
+--> Get-Process
+
+--> Get-Process -Name <Process-name> 
+
+--> $zebra = Get-Process MicrosoftEdge
+
+--> Get-history
+
+--> Get-ChildItem -Path C:\whatever\ -Filter 'regx'
+
+--> Add-content -Path <path\file-name> -Value <some content>
+
+--> del <path\file-name> 
+
+--> update-help
+
+--> Get-<command> | Out-GridView 
+
+--> Move-Item
+
+--> Copy-Item
+
+--> Remove-Item
+
+--> New-Item -ItemType Directory <Directory-name>
+
+--> Get-Date 
+
+--> 
+
+
+
+--------------------------------------------------------------------------------------------------------------------- usefull commands:
+1-------------<cmdlet> | get-member
+
+2-------------<object> | where-object -property <property-name>  [ -Match <something> | -contains <something> ]
+
+3-------------get-localuser | select *
+
+4-------------get-netipaddress | select-object -property interfacealias, interfaceindex, ipaddress, name,.....
+
+5-------------netstat -a
+
+6-------------get-NetTCPConnection
+
+7-------------Get-Hotfix
+
+8-------------net share
+8-------------get-smbshare
+
+9-------------get-porcess
+
+10-------------select-string
+
+11-------------get-sceduledtask
+
+12-------------Get-acl : get the security descriptor for a resource
+
+13-------------test-netconnection
+
+14-------------netsh firewall show state
+
+15-------------get-service
+
+16-------------(get-wmiobject -query 'select * from win32_service').Pathname  #find binary paths
+
+17-------------(this is not specific to powershell. but its realy usefull) C:<some-Path>\accesschk.exe /accepteula -uwcqv <Username> <serviceName> #check for a specific user for accessing a service and modifying it
+
+18-------------cmd.exe /c sc qc <serviceName>
+
+
