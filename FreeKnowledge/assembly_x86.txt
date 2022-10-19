@@ -1,0 +1,73 @@
+
+
+------note>> General perpuse registers: RAX, RBX, RCX, ..... 
+------note>> rbp	# points to the base of the stack
+------note>> rsp	# points to the top of the stack
+------note>> jmp 	# modifies the value in EIP or RIP. sets and executes the instruction
+------note>> call	# pushes value of rbp and rip onto stack before jumping 
+------note>> global variables stored in .data or heap 
+------note>> local variables stored in stack 
+------note>> stack grows from HIGH-address to LOW-addresses
+------note>> all the functions needs their stack frame to perform operations.
+------note>> 
+
+
+
+mov rax, rbx 	# rbx -> rax
+mov rax, [rcx] 	# pointed to by 'rcx' into rax
+
+add rax, rbx	# rax += rbx
+sub rax, rbx	# rax -= rbx
+
+and rax, rax	# rax = rax & rax
+
+push rax
+pop rbx		# grabs the value at the top of the stack.   "pointed by rsp" -> "rbx"
+
+cmp rax, #5
+
+
+###jump instructions 
+
+je	# jump if equal/zero
+jne	# jump if not equal/nonzero
+jg	# jump if greater
+jl	# jump if less
+
+jnz	# jump if not zero. based on CPU flags
+jz	# jump if zero
+
+
+###addrressing modes
+
+add rax, 14;
+
+xor rax, rax;
+
+add rax, [rbx];  		# rax = (pointed to by rbx) + rax
+	
+mov rbx, 1234[8*rax+rcx]	# move word at address 8*rax+rcx+1234 into rbx
+
+
+
+#### call instruction
+
+	+ pushes the return address to the stack when called. then jump to that address that being called
+	+ first 6 function parameters are passed in through registers
+		RDI, RSI, RDX, RCX, R8, R9 
+	+large parameters/structures passed by value are passed through the stack	
+
+### ret instruction
+
+	+ the return address is popped off the stack and placed into 
+	
+
+
+### heap memory 
+
+	+ dynamic memory allocations
+	+ heap memory is not managed automatically
+	+ heap variables can be accessed globally
+
+
+
