@@ -32,3 +32,16 @@ Set-PSSessionConfiguration -Name Microsoft.PowerShell -showSecurityDescriptorUI
 # change the LocalAccountTokenFilterPolicy registry key
 ```
 ## RID Hijacking
+- **make the operating system think you are the Administrator**
+  - check for assigned RIDs for any user:
+  ```ps1
+  wmic useraccount get name,sid
+  ```
+  - you are admin, so you can open the RegEdit with PSexec.exe
+  ```ps1
+  PsExec64.exe -i -s regedit
+  ```
+  - goto 'HKLM\SAM\SAM\Domains\Account\Users\'
+  - search for current user RID
+  - under this key you can see **F value** that holds users's RID
+  - change it to **500** The next time user logs in, LSASS will associate it with the same RID as Administrator and grant them the same privileges.
