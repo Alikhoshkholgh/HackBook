@@ -19,5 +19,16 @@ reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /t REG_DW
 ```
 
 ## Special Privileges and Security Descriptors
-
+- **Directly Assing Privileges to user in Config file**(SeBackupPrivilege, SeRestorePrivilege)
+```ps1
+# create backup file from privilege configuration file
+secedit /export /cfg config.inf
+# add the user to the lines in the configuration regarding the SeBackupPrivilege and SeRestorePrivilege in TextEditor.
+# convert the .inf file into a .sdb file and then put it back, using: 
+secedit /import /cfg config.inf /db config.sdb
+secedit /configure /db config.sdb /cfg config.inf
+# user can't log into the system via WinRM, in the configuration window for WinRM's security descriptor you can add user and assign it full privileges for WinRM::
+Set-PSSessionConfiguration -Name Microsoft.PowerShell -showSecurityDescriptorUI
+# change the LocalAccountTokenFilterPolicy registry key
+```
 ## RID Hijacking
