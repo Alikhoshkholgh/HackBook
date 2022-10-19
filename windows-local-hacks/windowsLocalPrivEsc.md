@@ -107,7 +107,7 @@ icacls C:\Windows\System32\SomeThing.exe /grant <Username>:F
 
 ## SeImpersonate / SeAssignPrimaryToken:
 lets keep it short:)))). use this binaries to get systemSHELL:
-	+ RoguePotato.exe
-	+ juicyPotato.exe
-	+ PrintSpoofer.exe
+- RoguePotato.exe
+- juicyPotato.exe
+- PrintSpoofer.exe
 
