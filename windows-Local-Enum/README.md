@@ -218,15 +218,12 @@ snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
   
   
 ## Token Impersonation:
-  + fairly hard to Describe :)))))
 
+	+ fairly hard to Describe :)))))
 	- 1 check if you have this specific token: 
-
 		command: whoami /priv
 		Note: you should look for : SeImpersonatePrivilege
-
 	- 2 use this tools to gain "NT Authority/System" shell:
-
 		+ Rugue potato 
 		+ prinSpoofer
   
