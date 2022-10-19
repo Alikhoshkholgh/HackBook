@@ -50,7 +50,7 @@ get-acl c:\Path\to\executableFile
 
 
 # Services:
-Windows services are managed by the Service Control Manager (SCM). The SCM is a process in charge of managing the state of services as needed, checking the current status of any given service and generally providing a way to configure services.
+Windows services are managed by the **Service Control Manager (SCM)**. The SCM is a process in charge of **managing the state of services** as needed, checking the current status of any given service and generally providing a way to configure services.
 
 ### + check Insecure Permissions on Service Executable
 	query on service to get information:
