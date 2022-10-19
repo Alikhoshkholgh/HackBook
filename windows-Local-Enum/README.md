@@ -52,7 +52,7 @@
 
 - **using wmic to list all installed applications**
   ```ps1
-  wmic product get name,version  
+  wmic product get name,version, vendor  
   ```
 
 - **services**
@@ -69,4 +69,18 @@
   # Once we find its process ID, let's check if providing a network service by listing the listening ports within the system.
   netstat -noa |findstr "LISTENING" |findstr "3212"
   ```
-  
+- **check updates**  
+```ps1  
+# You can check installed updates using
+wmic qfe get Caption, Description
+```  
+
+- **check Shares**
+```ps1
+net share
+```  
+
+- **Get info from SNMP**
+```ps1
+snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
+```  
