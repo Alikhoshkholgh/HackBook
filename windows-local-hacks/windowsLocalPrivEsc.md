@@ -111,3 +111,11 @@ lets keep it short:)))). use this binaries to get systemSHELL:
 - juicyPotato.exe
 - PrintSpoofer.exe
 
+# Vulnerable Softwares
+## Unpatched Software:
+Software installed on the target system can present various privilege escalation opportunities. check for installed softwares and versions:
+Remember that the wmic product command may not return all installed programs.It is always worth checking desktop shortcuts, available services or generally any trace that indicates the existence of additional software that might be vulnerable.
+```ps1
+wmic product get name,version,vendor
+```
+	
