@@ -89,13 +89,11 @@ snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
 
 
 
-# windows service Enumerations and exploits for privEsc: 
+# windows service Enumerations for privEsc: 
 	
-	**NOTE**: in most of the cases we only want to replace service binary with our reverse-shell.exe. so, we look for binary path in any way we can to do this
-
-	**NOTE**: Download this Binary: accesschk.exe. this helps you better enumerate file and directory permissions on that system.
-
-	**NOTE**: after replacing the service binary YOU SHOULD BE ABLE TO RESTART THE TARGET SERVICE
+	NOTE: in most of the cases we only want to replace service binary with our reverse-shell.exe. so, we look for binary path in any way we can to do this
+	NOTE: Download this Binary: accesschk.exe. this helps you better enumerate file and directory permissions on that system.
+	NOTE: after replacing the service binary YOU SHOULD BE ABLE TO RESTART THE TARGET SERVICE
 
 
 	1- first of all we can use this command to take a look at the service: 
@@ -129,7 +127,7 @@ snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
 		+ check: .\accesschk.exe /accepteula -quvw "C:\Program Files\<path-to-executable-file-for-servcie>.exe"
 
 
-# Registry
+## Registry
 
 
 	1- AutoRun applications Registry: 
@@ -171,11 +169,11 @@ snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
 			+ reg query HKLM /f password /t REG_SZ /s
 
 
-### scheduled tasks:
+## scheduled tasks:
 	+ needless to say that if you have permissions to change the contents of the scheduled scripts that are running with administration privileges, you can gain a reverse shell.
 
 
-### StartUp Applications: 
+## StartUp Applications: 
 
 	+ StartUP Application: check if you have permission to put any shortcuts at the following path. if you have, so you can put your shell code to be executed by the system at startUP.
 
@@ -193,12 +191,12 @@ snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
 
 
 
-### unsecure GUI with system priv:
+## unsecure GUI with system priv:
 	+ if any GUI application running with admin rights, has "file open" option, we can spawn cmd.exe as admin.
 
 
 
-### stored passwords:
+## stored passwords:
 
 	+ 1 stored credentilas from another users (maybe admin):
 
@@ -218,7 +216,7 @@ snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
   
   
   
-  ### Token Impersonation:
+## Token Impersonation:
   + fairly hard to Describe :)))))
 
 	- 1 check if you have this specific token: 
