@@ -95,6 +95,7 @@ snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
 	NOTE: Download this Binary: accesschk.exe. this helps you better enumerate file and directory permissions on that system.
 	NOTE: after replacing the service binary YOU SHOULD BE ABLE TO RESTART THE TARGET SERVICE
 
+## Registry
 
 	1- first of all we can use this command to take a look at the service: 
 		
