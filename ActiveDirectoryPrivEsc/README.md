@@ -65,7 +65,7 @@ Windows services are managed by the Service Control Manager (SCM). The SCM is a 
 	 HKLM\SYSTEM\CurrentControlSet\Services\	
 	
 ### + Know that: 
-	Services have a Discretionary Access Control List (DACL), which indicates who has permission to start, stop, pause, query status, query configuration, or reconfigure the service,
+Services have a Discretionary Access Control List (DACL), which indicates who has permission to start, stop, pause, query status, query configuration, or reconfigure the service,
 
 
 
