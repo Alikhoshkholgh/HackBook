@@ -52,8 +52,8 @@ get-acl c:\Path\to\executableFile
 # Services:
 Windows services are managed by the Service Control Manager (SCM). The SCM is a process in charge of managing the state of services as needed, checking the current status of any given service and generally providing a way to configure services.
 
-### query on service to get information:
-	Insecure Permissions on Service Executable
+### + check Insecure Permissions on Service Executable
+	query on service to get information:
 	```ps1
 	# look for BINARY_PATH_NAME & SERVICE_START_NAME and check Binary for overwriting it
 	C:\> sc qc apphostsvc
@@ -61,10 +61,11 @@ Windows services are managed by the Service Control Manager (SCM). The SCM is a 
 	C:\> sc stop windowsscheduler
 	C:\> sc start windowsscheduler
 	```
-### Services have a Discretionary Access Control List (DACL), which indicates who has permission to start, stop, pause, query status, query configuration, or reconfigure the service,
+### + look for Services in Registrie:
+	+ HKLM\SYSTEM\CurrentControlSet\Services\	
+	
+### + Note: Services have a Discretionary Access Control List (DACL), which indicates who has permission to start, stop, pause, query status, query configuration, or reconfigure the service,
 
-### All of the services configurations are stored on the registry under and A subkey exists for every service in the system. Again:
-	+ HKLM\SYSTEM\CurrentControlSet\Services\
 
 
 	
