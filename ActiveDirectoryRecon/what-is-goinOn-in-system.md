@@ -1,4 +1,4 @@
-# Enumerate security Tools that implemented on the target
+# Enumerate implemented security Tools on the target
 
 - **whether antivirus exists or not**
   ```ps1
