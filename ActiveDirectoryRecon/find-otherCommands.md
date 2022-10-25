@@ -10,6 +10,6 @@
   ```
 
 - **Know About Services**
-```ps1
-Get-CimInstance -ClassName Win32_Service | Where-Object {$_.StartName -like 'svcIIS*'} | Select-Object *
-```
+  ```ps1
+  Get-CimInstance -ClassName Win32_Service | Where-Object {$_.StartName -like 'svcIIS*'} | Select-Object *
+  ```
