@@ -1,6 +1,6 @@
 
 ### list users:
-  ```
+  ```ps1
   # local users
     + get-localuser
     + net user
