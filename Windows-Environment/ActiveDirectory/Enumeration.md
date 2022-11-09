@@ -2,8 +2,8 @@
 ### list users:
   ```ps1
   # local users
-    + get-localuser
-    + net user
+  get-localuser
+  net user
   # domain users
-    + net user /domain
+  net user /domain
   ```
