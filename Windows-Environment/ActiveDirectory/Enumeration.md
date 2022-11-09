@@ -65,12 +65,15 @@
        Get-ADUser -Filter * -Identity <user> -Properties *
        #Get a spesific "string" on a user's attribute
        Get-ADUser -Filter 'Description -like "*wtver*"' -Properties Description | select Name, Description
+       Get-ADUser -Identity gordon.stevens -Server sub.domainname.com -Properties *
+       Get-ADUser -Filter 'Name -like "*stevens"' -Server sub.domainname.com | Format-Table Name,SamAccountName -A
     ```
-  + **Enumerate Domain Users:** 
+  + **Enumerate Domain groups:** 
     ```powershell
-        Get-ADUser -Filter * -Identity <user> -Properties *
-        #Get a spesific "string" on a user's attribute
-        Get-ADUser -Filter 'Description -like "*wtver*"' -Properties Description | select Name, Description
+        #list groups
+        Get-ADGroup -Identity Administrators -Server sub.domainname.com
+        #list memebers
+        Get-ADGroupMember -Identity Administrators -Server za.tryhackme.com
     ```
   + **Enum Domain Computers:** 
     ```powershell
