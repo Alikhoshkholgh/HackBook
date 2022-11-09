@@ -12,3 +12,15 @@
   net user <username> /domain
 
   ```
+
+### list users:
+  ```ps1
+  # domain groups
+  net group /domain
+  
+  # domain group specific
+  net group <groupname> /domain
+  
+  # local groups
+  get-localgroup
+  ```
