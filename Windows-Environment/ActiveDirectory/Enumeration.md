@@ -227,10 +227,9 @@
       ``` 
     
     
-## use The BloodHound Tool
 
 
-# Enumerate implemented security Tools on the target
+## Enumerate implemented security Tools on the target
 
 - **whether antivirus exists or not**
   ```ps1
