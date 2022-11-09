@@ -32,4 +32,5 @@
   net accounts /domain
 # local
   net accounts
+# Note: The net commands may not show all information. For example, if a user is a member of more than ten groups, not all of these groups will be shown in the output.
 ```
