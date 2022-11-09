@@ -1,5 +1,5 @@
 
-### list users:
+### list Users:
   ```ps1
   # local users
   get-localuser
@@ -13,7 +13,7 @@
 
   ```
 
-### list users:
+### list Groups:
   ```ps1
   # domain groups
   net group /domain
@@ -24,3 +24,12 @@
   # local groups
   get-localgroup
   ```
+
+
+### check account password policies:
+```ps1
+# on the domain
+  net accounts /domain
+# local
+  net accounts
+```
