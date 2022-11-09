@@ -74,7 +74,7 @@
         #list groups
         Get-ADGroup -Identity Administrators -Server sub.domainname.com
         #list memebers
-        Get-ADGroupMember -Identity Administrators -Server za.tryhackme.com
+        Get-ADGroupMember -Identity Administrators -Server sub.domainname.com
     ```
   + **Enum Domain Computers:** 
     ```powershell
@@ -82,3 +82,15 @@
         Get-ADGroup -Filter * 
     ```
     
+  + **AD Objects:** 
+    ```powershell
+        #For example, if we are looking for all AD objects that were changed after a specific date:
+        $ChangeDate = New-Object DateTime(2022, 02, 28, 12, 00, 00)
+        Get-ADObject -Filter 'whenChanged -gt $ChangeDate' -includeDeletedObjects -Server sub.domainname.com        
+        
+        #for example, perform a password spraying attack without locking out accounts, we can use this to enumerate accounts that 
+        #have a badPwdCount that is greater than 0, to avoid these accounts in our attack:
+        Get-ADObject -Filter 'badPwdCount -gt 0' -Server sub.domainname.com        
+    ```
+    
+## use The BloodHound Tool
