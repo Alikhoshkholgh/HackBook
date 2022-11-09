@@ -1,5 +1,16 @@
 # Native commands:
 
+### Find Domain Controllers
+  ```ps1
+  nslookup domain.com
+  nslookup -type=srv _ldap._tcp.dc._msdcs.<domain>.com
+  nltest /dclist:domain.com
+  gpresult /r
+  $Env:LOGONSERVER 
+  echo %LOGONSERVER%
+  ```
+
+
 ### list Users:
   ```ps1
   # local users
@@ -299,6 +310,12 @@
   # Once we find its process ID, let's check if providing a network service by listing the listening ports within the system.
   netstat -noa |findstr "LISTENING" |findstr "3212"
   ```
+  
+  - **Know more About Services**
+  ```ps1
+  Get-CimInstance -ClassName Win32_Service | Where-Object {$_.StartName -like 'svcIIS*'} | Select-Object *
+  ```
+
 - **check updates**  
 ```ps1  
 # You can check installed updates using
