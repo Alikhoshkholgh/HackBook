@@ -1,4 +1,4 @@
-## Native commands:
+# Native commands:
 
 ### list Users:
   ```ps1
@@ -38,7 +38,7 @@
 ```
 
 
-## AD module:
+# AD module:
   + ## **setup-install**:
     + in **windows servers** its already **installed**, and i recommend that to **only use it in windowsServer**.
     + to enable active directory module on windows10:
@@ -229,7 +229,7 @@
     
 
 
-## Enumerate implemented security Tools on the target
+# Enumerate implemented security Tools on the target
 
 - **whether antivirus exists or not**
   ```ps1
