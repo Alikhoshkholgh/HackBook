@@ -153,27 +153,6 @@
 
 
 
--------------------------------------------------------------------------------------------------------------------------------------- TOOLS:
-
-1- Responder
-
-2- mimikatz
-
-3- NTLMRelayx
-
-4- Rubeus
-
-5- disinternals
-
-6- NTDSUtil	(steal NTDS)
-
-7- Impacket
-
-8-kerbrute
----------------------------------------------------------------------- 
-
-
-
 
 
 
@@ -276,45 +255,6 @@
 
 -------------------------------------------------------------------------------------------------------------------------------------- 
 
-
-
-
--------------------------------------------------------------------------------------------------------------------------------------- attack scenario:
-
-
-
-
-  		+-> if kerberos port was exposed, bruteforce usernames.
-                        kerbrute userenum --dc <DomainName> -d <DomainName> <userlist-file>
-
-		+-> look for users with "kerberos pre-authentication:Disable"
-
-		+-> with this users we can request TGT then crack the it to find user's password. 
-                	tool:Rubeus
-                        crack users and computer's passwords ( Rebeus.exe harvest /interval:30 ) (harvesting TGT)
-                        find and crack service's passwords ( Rubeus.exe kerberoast ) (kerberoasting)
-                        find users with disabled pre-authentication and crack their passwords(AS-REP Roasting)
-
-
-                +-> tool:mimikatz  
-                        dump the LSAS
-                        pass the ticket(TGT ticket), then impersonate admin user if it exsits, we just reused the ticket
-
-
-                +-> tool:mimikatz
-                        Golden/Silver ticket attack
-
-                +-> tool:mimikatz
-                        key skeleton attack. maitaining access
-                                                                  
-
-
-
-------------------------------------------------------------------------------------------------------------------------- Kerberos Communication
-
-
-
-		
 
 
 
