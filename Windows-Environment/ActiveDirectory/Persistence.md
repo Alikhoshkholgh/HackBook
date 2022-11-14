@@ -105,7 +105,16 @@ for example:
   
     
       
-      
+# #Persistence with ACLs:
+## AD group Templates (AdminSDHolder):
+- we should add our low-priv user to this group and give it prefered access that we want:
+```
+Server-manager -> active directory users and computers -> <DomainName> -> System -> AdminSDHolder
+# open the properties for this group and navigate to security tab and add the user and give its permissions
+
+```
+  
+    
       
       
       
