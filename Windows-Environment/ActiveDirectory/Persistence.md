@@ -1,5 +1,5 @@
 
-# Persist with Credentials:
+# #Persist with Credentials:
 ### The goal then is to persist with near-privileged credentials.
   - **Credentials that have local administrator rights on several machines**
   - **Service accounts that have delegation permissions**
@@ -13,7 +13,7 @@ for example:
   - mimikatz # lsadump::dcsync /domain:<Domain-name> /all
 ```
 
-# Persist with Tickets:
+# #Persist with Tickets:
   - **Golden Tickets**
   - **Silver Tickets**
 
@@ -44,3 +44,6 @@ for example:
   - **/service** - The service we are requesting in our TGS. CIFS is a safe bet, since it allows file access.
   - **/ptt** - This flag tells Mimikatz to inject the ticket directly into the session, meaning it is ready to be used.
 - after executing this, the ticket is loaded into memory and we can access a specific privileged resources in the domain
+
+
+# #Persist with Certificates:
