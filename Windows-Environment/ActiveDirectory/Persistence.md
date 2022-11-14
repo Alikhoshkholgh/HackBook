@@ -115,6 +115,11 @@ Server-manager -> active directory users and computers -> <DomainName> -> System
 ```
   
     
+    
+# Persistence with GPOs:
+### common GPO persistence techniques:
+- Restricted Group Membership - This could allow us administrative access to all hosts in the domain
+- Logon Script Deployment - This will ensure that we get a shell callback every time a user authenticates to a host in the domain.
       
       
       
