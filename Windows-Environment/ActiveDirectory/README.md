@@ -18,25 +18,30 @@
 
 # Active Directory and Kerberos attacks and qoutes:
 
-				---Kerberos Communication---
+### Kerberos Communication---
 
-		(user) -----------------{ AS-REQ }---------------->> Kerberos 		contains: {1-Pre Auth Data: time-stamp encrypted with user's password  2-username  3-service-name: always KRBTGT}
+		(user) -----------------{ AS-REQ }---------------->> Kerberos 		
+		contains: {1-Pre Auth Data: time-stamp encrypted with user's password  2-username  3-service-name: always KRBTGT}
 
-		(user) <<---------------{ AS-REP }------------------ Kerberos		contains: {1-UserTicket:encrypted by krbtgt's password   2-SessionKey: encrypted with user's password }
+		(user) <<---------------{ AS-REP }------------------ Kerberos		
+		contains: {1-UserTicket:encrypted by krbtgt's password   2-SessionKey: encrypted with user's password }
 
-		(user) -----------------{ TGS-REQ }--------------->> Kerberos		contains: {1-Service principal name  2-Pre-Auth ticket 3-Authenticator}
+		(user) -----------------{ TGS-REQ }--------------->> Kerberos		
+		contains: {1-Service principal name  2-Pre-Auth ticket 3-Authenticator}
 
-		(user) <<---------------{ TGS-REP }----------------- Kerberos		contains: {1-ServiceTicket: encrypted with service password  2-SessionKey: encrypted with user's password }
+		(user) <<---------------{ TGS-REP }----------------- Kerberos		
+		contains: {1-ServiceTicket: encrypted with service password  2-SessionKey: encrypted with user's password }
 
-		(user) -----------------{ AP-REQ }----------------->> Service		contains: {1- ServiceTicket  2-Authenticator}
-
-
-
-
-
+		(user) -----------------{ AP-REQ }----------------->> Service		
+		contains: {1- ServiceTicket  2-Authenticator}
 
 
--------------------------------------------------------------------------------------------------------------------------------------- How To ATTACK:	
+
+
+
+
+
+### How To ATTACK:	
 
 
 1- AS-REP roasting attack:
@@ -145,7 +150,6 @@
 			+ Schema Admins Group
 			+ Server Operators Group
 
----------------------------------------------------------------------- 
 
 
 
@@ -155,8 +159,7 @@
 
 
 
-
--------------------------------------------------------------------------------------------------------------------------------------- Qoutes 
+### Qoutes 
 
 
 --> kerberos tickets are stored in LSAS
@@ -208,10 +211,9 @@
 
 --> try to keep the number of the domain-admins small as possible
 
----------------------------------------------------------------------- 
 
 
--------------------------------------------------------------------------------------------------------------------------------------- Default Security Groups:
+### Default Security Groups:
 
 	--> Domain Controllers - All domain controllers in the domain
 
