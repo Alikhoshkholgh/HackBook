@@ -1,5 +1,5 @@
 
-# Credentials:
+# Persist with Credentials:
 ### The goal then is to persist with near-privileged credentials.
   - **Credentials that have local administrator rights on several machines**
   - **Service accounts that have delegation permissions**
@@ -13,7 +13,7 @@ for example:
   - mimikatz # lsadump::dcsync /domain:<Domain-name> /all
 ```
 
-# Tickets:
+# Persist with Tickets:
   - **Golden Tickets**
   - **Silver Tickets**
 
