@@ -8,17 +8,16 @@
     + runas.exe /netonly /user:<domain>\<username> cmd.exe
 
 # Psexec:
-- Required_1: Ports: 445/TCP (SMB)
-- Required_2: Group Memberships: Administrators
-
+- **Required_1**: Ports: 445/TCP (SMB)
+- **Required_2**: Group Memberships: Administrators
 - **command**
 ```ps1
 psexec64.exe \\MACHINE_IP -u Administrator -p Mypass123 -i cmd.exe
 ```
 
 # WinRM(create process):
-- Required_1: Ports: 5985/TCP (WinRM HTTP) or 5986/TCP (WinRM HTTPS)
-- Required_2: Group Memberships: Remote Management Users
+- **Required_1**: Ports: 5985/TCP (WinRM HTTP) or 5986/TCP (WinRM HTTPS)
+- **Required_2**: Group Memberships: Remote Management Users
 - **command**
 ```ps1
 #To connect to a remote Powershell session from the command line, we can use the following command
