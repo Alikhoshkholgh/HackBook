@@ -130,3 +130,14 @@ Start-ScheduledTask -CimSession $Session -TaskName "TaskName"
 Unregister-ScheduledTask -CimSession $Session -TaskName "TaskName"
 ```
 
+## 5.4-Installing MSI packages Using WMI:
+- Ports:
+    - 135/TCP, 49152-65535/TCP (DCERPC)
+    - 5985/TCP (WinRM HTTP) or 5986/TCP (WinRM HTTPS)
+- Required Group Memberships: Administrators
+- **command**
+```ps1
+Invoke-CimMethod -CimSession $Session -ClassName Win32_Product -MethodName Install -Arguments @{PackageLocation = "C:\Windows\myinstaller.msi"; Options = ""; AllUsers = $false}
+# on legacy systems:
+wmic /node:TARGET /user:DOMAIN\USER product call install PackageLocation=c:\Windows\myinstaller.msi
+```
