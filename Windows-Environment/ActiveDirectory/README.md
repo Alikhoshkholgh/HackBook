@@ -3,12 +3,6 @@
 ![ActiveDirectory Killchain](https://github.com/Alikhoshkholgh/HackBook/blob/main/Windows-Environment/ActiveDirectory/ActiveDirectory%20Killchain.png)
 
 
-# SwissArmyKnife command:
-
-  ### Runas
-    + runas.exe /netonly /user:<domain>\<username> cmd.exe
-
-
 
 
 
