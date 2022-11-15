@@ -23,7 +23,7 @@ psexec64.exe \\MACHINE_IP -u Administrator -p Mypass123 -i cmd.exe
 #To connect to a remote Powershell session from the command line, we can use the following command
 winrs.exe -u:Administrator -p:Mypass123 -r:target cmd
 ```
-- **OR**:
+- **OR**
 ```ps1
 #We can achieve the same from Powershell, but to pass different credentials, we will need to create a PSCredential object:
 $username = 'Administrator';
