@@ -67,7 +67,7 @@ schtasks /S TARGET /TN "TaskName" /DELETE /F
 - **Required**:
     - **DCOM**: RPC over IP will be used for connecting to WMI. This protocol uses port 135/TCP and ports 49152-65535/TCP
     - **Wsman**: WinRM will be used for connecting to WMI. This protocol uses ports 5985/TCP (WinRM HTTP) or 5986/TCP (WinRM HTTPS).
-- provide objects for connecting to WMI:
+- First we need to provide objects for connecting to WMI:
 ```ps1
 $username = 'Administrator';
 $password = 'Mypass123';
@@ -76,7 +76,7 @@ $credential = New-Object System.Management.Automation.PSCredential $username, $s
 $Opt = New-CimSessionOption -Protocol DCOM
 $Session = New-Cimsession -ComputerName TARGET -Credential $credential -SessionOption $Opt -ErrorAction Stop
 ```
-### 5.1-Remote Process creation Using WMI:
+## 5.1-Remote Process creation Using WMI:
 - Ports:
     - 135/TCP, 49152-65535/TCP (DCERPC)
     - 5985/TCP (WinRM HTTP) or 5986/TCP (WinRM HTTPS)
@@ -90,7 +90,7 @@ CommandLine = $Command
 # you can also do this
 wmic.exe /user:Administrator /password:Mypass123 /node:TARGET process call create "cmd.exe /c <command to execute>" 
 ```
-### 5.2-Creating Services Remotely Using WMI:
+## 5.2-Creating Services Remotely Using WMI:
 - Ports:
     - 135/TCP, 49152-65535/TCP (DCERPC)
     - 5985/TCP (WinRM HTTP) or 5986/TCP (WinRM HTTPS)
@@ -112,7 +112,7 @@ Invoke-CimMethod -InputObject $Service -MethodName StopService
 Invoke-CimMethod -InputObject $Service -MethodName Delete
 ```
 
-### 5.3-Creating Scheduled Tasks Remotely Using WMI:
+## 5.3-Creating Scheduled Tasks Remotely Using WMI:
 - Ports:
     - 135/TCP, 49152-65535/TCP (DCERPC)
     - 5985/TCP (WinRM HTTP) or 5986/TCP (WinRM HTTPS)
