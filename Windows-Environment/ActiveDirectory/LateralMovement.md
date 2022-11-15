@@ -141,3 +141,10 @@ Invoke-CimMethod -CimSession $Session -ClassName Win32_Product -MethodName Insta
 # on legacy systems:
 wmic /node:TARGET /user:DOMAIN\USER product call install PackageLocation=c:\Windows\myinstaller.msi
 ```
+
+# 6-Alternative for plain-text passwords:
+- **Note**: 
+    - the NTLM challenge sent during authentication can be responded to just by knowing the password hash.
+    - This means we can authenticate without requiring the plaintext password to be known. Instead of having to crack NTLM hashes, 
+    - if the Windows domain is configured to use NTLM authentication, we can Pass-the-Hash (PtH) and authenticate successfully.
+- 
