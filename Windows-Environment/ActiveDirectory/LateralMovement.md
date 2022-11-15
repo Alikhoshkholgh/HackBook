@@ -179,10 +179,10 @@ evil-winrm -i VICTIM_IP -u MyUser -H NTLM_HASH
     - 3-To request a TGS, the user will send his username and a timestamp **encrypted using the Session Key**, along with the TGT and a **SPN**
     - 4-As a result, the KDC will send us a TGS and a **Service Session Key**, and TGS is encrypted using the **Service Owner Hash**
    ### 6.2.1 Pass-The-Ticket
-   - **Notes**:
-    - Sometimes it will be possible to extract Kerberos tickets and session keys from LSASS memory using mimikatz
-    - Notice that if we only had access to a ticket but not its corresponding session key, we wouldn't be able to use that ticket; therefore, both are necessary.
-    - Extracting TGTs will require us to have administrator's credentials, and extracting TGSs can be done with a low-privileged account (only the ones assigned to that account).
+    - **Notes**:
+        - Sometimes it will be possible to extract Kerberos tickets and session keys from LSASS memory using mimikatz
+        - Notice that if we only had access to a ticket but not its corresponding session key, we wouldn't be able to use that ticket; therefore, both are necessary.
+        - Extracting TGTs will require us to have administrator's credentials, and extracting TGSs can be done with a low-privileged account (only the ones assigned to that account).
     - **command to Extract the keys:**
     ```ps1
     mimikatz # privilege::debug
