@@ -7,7 +7,7 @@
 ### Runas is usefull:
     + runas.exe /netonly /user:<domain>\<username> cmd.exe
 
-# Psexec:
+# 1-Psexec:
 - **Required_1**: Ports: 445/TCP (SMB)
 - **Required_2**: Group Memberships: Administrators
 - **command**
@@ -15,7 +15,7 @@
 psexec64.exe \\MACHINE_IP -u Administrator -p Mypass123 -i cmd.exe
 ```
 
-# WinRM(create process):
+# 2-WinRM(create process):
 - **Required_1**: Ports: 5985/TCP (WinRM HTTP) or 5986/TCP (WinRM HTTPS)
 - **Required_2**: Group Memberships: Remote Management Users
 - **command**
@@ -37,11 +37,11 @@ Invoke-Command -Computername TARGET -Credential $credential -ScriptBlock {whoami
 ```
 
 
-# SC
+# 3-SC
 **create services remotely**
-- Ports:
+- **Required_1**: Ports:
     - 135/TCP, 49152-65535/TCP (DCE/RPC)
     - 445/TCP (RPC over SMB Named Pipes)
     - 139/TCP (RPC over SMB Named Pipes)
-- Required Group Memberships: Administrators
+- **Required_2**: Group Memberships: Administrators
 
