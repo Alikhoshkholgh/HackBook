@@ -36,3 +36,12 @@ Enter-PSSession -Computername TARGET -Credential $credential
 Invoke-Command -Computername TARGET -Credential $credential -ScriptBlock {whoami}
 ```
 
+
+# SC
+**create services remotely**
+- Ports:
+    - 135/TCP, 49152-65535/TCP (DCE/RPC)
+    - 445/TCP (RPC over SMB Named Pipes)
+    - 139/TCP (RPC over SMB Named Pipes)
+- Required Group Memberships: Administrators
+
