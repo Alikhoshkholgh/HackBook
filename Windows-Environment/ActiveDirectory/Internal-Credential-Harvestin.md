@@ -20,9 +20,9 @@ C:\Users\user> reg query HKCU /f password /t REG_SZ /s
   - Path: c:\Windows\System32\config\sam
   - we can not read it and copy it
   - SAM database is encrypted either with RC4 or AES.we need a decryption key which is also stored in the files system in **c:\Windows\System32\Config\system** 
-  ### how to Dump:
-    - 1-MetaSploit.hashdump
-    - 2-Microsoft Volume shadow copy:
+    ### how to Dump:
+    1-MetaSploit.hashdump
+    2-Microsoft Volume shadow copy:
         ```
         wmic shadowcopy call create Volume='C:\'
         #find where it is stored
