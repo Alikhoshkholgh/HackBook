@@ -18,3 +18,12 @@ foreach($ip in $addressList){
         start-sleep -Seconds $delay_perReq
     }    
 }
+
+
+
+#$requestCallback = $state = $null
+#$client = New-Object System.Net.Sockets.TcpClient
+#$beginConnect = $client.BeginConnect($hostname,$port,$requestCallback,$state)
+#Start-Sleep -milli $timeOut
+#if ($client.Connected) { $open = $true } else { $open = $false }
+#$client.Close()
