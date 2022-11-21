@@ -2,7 +2,7 @@ $hostname = $env:computername
 $addressList = "IP1", "IP2", "IP3", "myMachineName1", "myMachineName2", "myMachineName3"
 $portList = 135,445
 $delay_perReq = 1
-$storeFile = "\\localhost\C$\Users\Public\Documents\$hostname.txt"
+$storeFile = "\\ShareName\C$\Users\Public\Documents\$hostname.txt"
 
 $result = "scanning initiated by $hostname`n"
 
