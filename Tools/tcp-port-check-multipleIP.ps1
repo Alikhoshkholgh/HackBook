@@ -1,29 +1,24 @@
-$addressList = "192.168.11.1", "192.168.11.2", "192.168.11.3", "192.168.11.4"
-$portList = 3389,135,445 
 $hostname = $env:computername
-$delay_perReq = 10
+$addressList = "IP1", "IP2", "IP3", "myMachineName1", "myMachineName2", "myMachineName3"
+$portList = 135,445
+$delay_perReq = 1
+$storeFile = "\\localhost\C$\Users\Public\Documents\$hostname.txt"
 
-write-output "scanning initiated by $hostname"
+$result = "scanning initiated by $hostname`n"
 
-
-foreach($ip in $addressList){
-    
-    foreach($port in $portList){
-
-        $conn_res=(test-netconnection -computername $ip -port $port -warningAction silentlycontinue)
-        $comName = $conn_res.tcptestsucceeded        
+foreach($ip in $addressList){    
+    foreach($port in $portList){           
+        $requestCallback = $state = $null
+        $client = New-Object System.Net.Sockets.TcpClient
+        $beginConnect = $client.BeginConnect($ip,$port,$requestCallback,$state)
+        Start-Sleep -seconds 1
+        if ($client.Connected) { $open = $true } else { $open = $false }
+        $client.Close()
         
-        if($comName){           write-output "($ip):($port)   is available for $hostname"            }
-        else{                   write-output "($ip):($port)   is not-available for $hostname"            }
+        if($open){           $result += "($ip):($port)   is available for $hostname`n"            }
+        else{                $result += "($ip):($port)   is not-available for $hostname`n"            }
         start-sleep -Seconds $delay_perReq
-    }    
+    }
 }
 
-
-
-#$requestCallback = $state = $null
-#$client = New-Object System.Net.Sockets.TcpClient
-#$beginConnect = $client.BeginConnect($hostname,$port,$requestCallback,$state)
-#Start-Sleep -milli $timeOut
-#if ($client.Connected) { $open = $true } else { $open = $false }
-#$client.Close()
+Write-Output $result > $storeFile
