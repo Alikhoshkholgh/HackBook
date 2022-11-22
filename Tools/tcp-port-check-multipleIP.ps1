@@ -1,7 +1,10 @@
 $hostname = $env:computername
+#target machine list
 $addressList = "IP1", "IP2", "IP3", "myMachineName1", "myMachineName2", "myMachineName3"
+#target port list
 $portList = 135,445
 $delay_perReq = 1
+#where ever You Can Write
 $storeFile = "\\MachineName\C$\Users\Public\Documents\$hostname.txt"
 
 $result = "scanning initiated by $hostname`n"
