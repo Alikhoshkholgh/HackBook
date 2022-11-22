@@ -1,6 +1,7 @@
 #obviously you should see the Port:135 on the target machine
 $addressList = "hostname1","hostname2","hostname3",
 $delay_perReq = 1
+#if target machines are able to see my shares
 $storageHostname = "localhost"
 
 foreach($ip in $addressList){    
