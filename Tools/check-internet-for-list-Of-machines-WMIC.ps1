@@ -1,3 +1,4 @@
+#obviously you should see the Port:135 on the target machine
 $hostname = $env:computername
 $addressList = "hostname1","hostname2","hostname3",
 $delay_perReq = 1
